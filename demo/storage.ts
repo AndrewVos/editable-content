@@ -1,7 +1,8 @@
+import { basePath } from './urls';
 import { createStarterContent } from './blocks/templates';
 import { validateDocument, type PageAdapter, type PageSnapshot } from '../src/core';
 import { initial, schema, introductionImage } from './content';
-const KEY = 'editable-content-demo-v1';
+const KEY = 'editable-content-demo-v1' + (basePath === '/' ? '' : ':' + basePath);
 type Stored = { draft: PageSnapshot<typeof schema>; published: PageSnapshot<typeof schema> };
 export function load(): Stored {
   const raw = localStorage.getItem(KEY);

@@ -23,7 +23,8 @@
     "build": "bun scripts/build.ts",
     "typecheck": "bun --bun tsc --noEmit",
     "test": "bun test",
-    "prepublishOnly": "bun run typecheck && bun test && bun run build"
+    "prepublishOnly": "bun run typecheck && bun test && bun run build",
+    "build:demo": "bun scripts/build-demo.ts"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

@@ -29,6 +29,36 @@ The demo uses React, Tailwind, and plain CSS. It stores content in your browser.
 
 This package is under development and is not published to npm yet. To use it in another local project, run `bun run build` and `bun pm pack`, then install the resulting tarball in that project. React 18+ is required. Bun runs this repository's tooling; consumers use the built ESM package with their own React setup.
 
+## Deploy to GitHub Pages
+
+Two workflows are included:
+
+- [CI](.github/workflows/ci.yml) typechecks, tests, builds the library, and checks the static demo on pushes and pull requests.
+- [GitHub Pages](.github/workflows/pages.yml) validates and deploys the demo on pushes to the repository's default branch. You can also run it manually from the Actions tab on that branch.
+
+To enable deployment:
+
+1. Push this repository to GitHub.
+2. Open **Settings → Pages → Build and deployment**, and choose **GitHub Actions** as the source.
+3. Run the **GitHub Pages** workflow, or push another commit to the default branch.
+
+The workflow uses GitHub's configured base path, supporting project sites such as `https://username.github.io/editable-content/` and root/custom-domain sites. The playground is at `demo/` beneath that address. Images are served as static files; no Bun server runs on Pages.
+
+Build the same output locally:
+
+```sh
+bun run build:demo
+bun scripts/check-demo.ts
+
+# Build for a repository subpath:
+BASE_PATH=/editable-content/ bun run build:demo
+BASE_PATH=/editable-content/ bun scripts/check-demo.ts
+```
+
+Serve `site-dist/` with any static HTTP server, mounted at the chosen base path. Both `index.html` and `demo/index.html` are generated, so direct playground links work without SPA fallback routing. This output is separate from the library's `dist/`.
+
+Demo drafts and publishing remain local to each visitor's browser. Connect an external CMS backend for shared persistence.
+
 ## How content is organized
 
 | Concept | Purpose | Example |

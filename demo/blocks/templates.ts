@@ -1,6 +1,7 @@
+import { siteUrl } from '../urls';
 // Consumer-owned templates. This file and its renderers are NOT in the npm build.
 import { createBlock, defineBlocks, field, type ContentBlock, type Infer } from '../../src/core';
-const image = (name: string) => ({ id: `asset_${name}`, url: `/icons/${name}.svg`, alt: `${name} ceramic vessels and an olive branch` });
+const image = (name: string) => ({ id: `asset_${name}`, url: siteUrl(`icons/${name}.svg`), alt: `${name} ceramic vessels and an olive branch` });
 export const cardSchema = field.object('Card', {
   label: field.text('Card title', { required: true, default: 'Everyday essentials', maxLength: 100 }),
   description: field.text('Card description', { default: 'Thoughtful objects for the spaces you call home.', multiline: true, maxLength: 300 }),

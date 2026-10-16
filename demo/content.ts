@@ -1,6 +1,7 @@
+import { siteUrl } from './urls';
 import { templates, createStarterContent } from './blocks/templates';
 import { defineSchema, field, type Areas, type PageSnapshot } from '../src/core';
-export const introductionImage = { id: 'asset_terracotta', url: '/icons/terracotta.svg', alt: 'Ceramic vessels and an olive branch in warm sunlight' };
+export const introductionImage = { id: 'asset_terracotta', url: siteUrl('icons/terracotta.svg'), alt: 'Ceramic vessels and an olive branch in warm sunlight' };
 export const schema = defineSchema({
   content: field.object('Page content', { blocks: field.blocks('Sections', templates, { max: 12 }) }),
   hero: field.object('Introduction', {

@@ -81,11 +81,6 @@
 .preview-story i:last-child { background:repeating-linear-gradient(to bottom,#c9d6b9 0 3px,transparent 3px 10px); margin-block:12px; }
 .preview-quote { display:flex; align-items:center; justify-content:center; font:80px Georgia; color:#aec296; }
 .template-library>footer { border-top:1px solid #e2e8da; padding-top:18px; margin-top:22px; color:#94a285; font:10px/1.7 Arial; }
-.source-dialog { width:920px; }
-.source-tabs { display:flex; gap:8px; margin:15px 0; flex-wrap:wrap; }
-.source-tabs button { border:1px solid #cfdbc4; background:white; padding:8px 12px; border-radius:4px; font:11px monospace; color:#7f946b; }
-.source-tabs button[aria-pressed=true] { background:#e2ecd6; color:#455e36; }
-.source-dialog pre { overflow:auto; max-height:50dvh; padding:20px; background:#26392c; border-radius:5px; color:#c1d2b2; font:11px/1.8 monospace; white-space:pre; }
 @media(max-width:680px) {
   .page-content { margin-bottom:25px; }
   .content-area-bar { flex-wrap:wrap; }

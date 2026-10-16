@@ -10,8 +10,5 @@ const server = Bun.serve({ port: 3000, routes: {
   '/': index,
   '/demo': index,
   '/demo/': index,
-  '/demo/source/templates': () => new Response(Bun.file('demo/blocks/templates.ts'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }),
-  '/demo/source/renderers': () => new Response(Bun.file('demo/blocks/renderers.tsx'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }),
-  '/demo/source/ContentArea': () => new Response(Bun.file('demo/blocks/ContentArea.tsx'), { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }),
 }, development: { hmr: true, console: true } });
 console.log(`Demo running at ${server.url}`);
