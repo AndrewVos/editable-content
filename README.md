@@ -11,7 +11,34 @@ The package is headless: it provides schemas, React hooks, page state, validatio
 - **Publish a whole page.** Save every area and locale together under a stable CMS page ID, independent of its URL.
 - **Keep your CMS.** Supply permissions, persistence, revisions, media selection, and language switching.
 
-[Try the demo](#try-the-demo) · [React quickstart](#react-quickstart) · [Connect a CMS](#connect-a-cms) · [Page sections](#insertable-page-sections) · [API reference](#api-reference)
+[Install](#install) · [Try the demo](#try-the-demo) · [React quickstart](#react-quickstart) · [Connect a CMS](#connect-a-cms) · [Page sections](#insertable-page-sections) · [API reference](#api-reference)
+
+## Install
+
+Add the package to your React project:
+
+```sh
+npm install react-editable-content
+```
+
+Or use your preferred package manager:
+
+```sh
+bun add react-editable-content
+pnpm add react-editable-content
+yarn add react-editable-content
+```
+
+Requires React and React DOM 18 or later. The package includes TypeScript declarations and ships as ESM. Bun is only needed to develop this repository, not to use the library.
+
+Import React APIs from the package root, or schema utilities from the React-free core entry:
+
+```tsx
+import { EditablePage, useEditableField } from 'react-editable-content';
+import { defineSchema, field } from 'react-editable-content/core';
+```
+
+No stylesheet import or UI framework setup is needed. Continue with the [React quickstart](#react-quickstart) to connect your own editing controls.
 
 ## Try the demo
 
@@ -27,7 +54,7 @@ bun dev
 
 The demo uses React, Tailwind, and plain CSS. It stores content in your browser. Its templates and editing controls are examples you can copy and adapt; they are not shipped in the library.
 
-This package is under development and is not published to npm yet. To use it in another local project, run `bun run build` and `bun pm pack`, then install the resulting tarball in that project. React 18+ is required. Bun runs this repository's tooling; consumers use the built ESM package with their own React setup.
+To try local library changes in another project, run `bun run build` and `bun pm pack`, then install the resulting tarball in that project.
 
 ## Deploy to GitHub Pages
 
