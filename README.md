@@ -362,6 +362,40 @@ For complete consumer examples, explore the demo's [template schemas](demo/block
 
 Core utilities and types are available from both the root entry and `/core`. React APIs are available from the root entry. TypeScript declarations are included.
 
+## Publishing to npm
+
+The package is configured to publish publicly as `react-editable-content`. Only the headless library, declarations, README, MIT license, and package metadata are included.
+
+### First release
+
+Using an authenticated npm account with permission to publish this name:
+
+```sh
+npm login
+npm publish --dry-run
+npm publish
+```
+
+Run these commands from the repository with Bun and Node.js installed. The `prepublishOnly` script typechecks, runs tests, and rebuilds the library before publishing. The registry determines whether the name is available when you publish.
+
+### Subsequent releases from GitHub
+
+After the package exists on npm, open its **Settings → Trusted publishing** and add a GitHub Actions publisher with:
+
+| Setting | Value |
+| --- | --- |
+| Organization or user | `AndrewVos` |
+| Repository | `editable-content` |
+| Workflow filename | `npm-publish.yml` |
+| Environment | Leave blank |
+| Allowed action | Allow `npm publish` |
+
+The [publish workflow](.github/workflows/npm-publish.yml) uses npm's short-lived GitHub identity, so no npm token secret is needed. See [npm's trusted publishing documentation](https://docs.npmjs.com/trusted-publishers/) for configuration and expiry requirements.
+
+For each new version, update `package.json`, run `bun install` to refresh the lockfile if needed, commit and push, then publish a GitHub release whose tag exactly matches the version (for example, `v0.1.1`). The workflow checks the tag, validates the package, and publishes it. GitHub prereleases use the `next` npm tag; regular releases use `latest`. Use a prerelease version such as `0.2.0-beta.1` for preview builds.
+
+Do not create a GitHub release for an already-published version to trigger publishing: npm versions cannot be reused. After the first local publish, start automated releases with the next version.
+
 ## Example source and development
 
 | Location | Contents |
@@ -381,3 +415,7 @@ bun run build
 Builds clean `dist/` and generate ESM and TypeScript declarations. The package contains the built library, README, and package metadata; no demo components or styles are distributed.
 
 If you used an earlier local version, `InlineText`, `InlineLink`, `InlineMedia`, `AreaEditor`, and `EditAreaButton` now live in `demo/editor/`. The `styles.css` export and provider `messages` prop were removed; demo labels use `EditorMessagesProvider` instead.
+
+## License
+
+[MIT](LICENSE) © 2026 Andrew Vos.

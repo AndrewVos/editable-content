@@ -41,5 +41,28 @@
     "react-dom": "^19",
     "tailwindcss": "^4",
     "typescript": "^5.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewVos/editable-content.git"
+  },
+  "homepage": "https://github.com/AndrewVos/editable-content#readme",
+  "bugs": {
+    "url": "https://github.com/AndrewVos/editable-content/issues"
+  },
+  "keywords": [
+    "react",
+    "cms",
+    "headless",
+    "inline-editing",
+    "content",
+    "schema"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "license": "MIT"
 }

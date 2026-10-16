@@ -1,0 +1,42 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.3
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - name: Verify release version
+        env:
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+        run: |
+          node --input-type=module -e 'import fs from "node:fs"; const {version} = JSON.parse(fs.readFileSync("package.json", "utf8")); if (process.env.RELEASE_TAG !== `v${version}`) throw new Error("Release tag must match package.json version");'
+      - run: bun install --frozen-lockfile
+      # prepublishOnly runs typechecking, tests, and a clean library build.
+      - name: Publish stable release
+        if: '!github.event.release.prerelease'
+        run: npm publish --access public
+      - name: Publish prerelease
+        if: github.event.release.prerelease
+        run: npm publish --access public --tag next
