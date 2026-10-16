@@ -1,0 +1,44 @@
+{
+  "name": "react-editable-content",
+  "version": "0.1.0",
+  "description": "Schema-constrained, CMS-agnostic on-site editing for React",
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    }
+  },
+  "sideEffects": false,
+  "scripts": {
+    "dev": "bun --hot demo/server.ts",
+    "build": "bun scripts/build.ts",
+    "typecheck": "bun --bun tsc --noEmit",
+    "test": "bun test",
+    "prepublishOnly": "bun run typecheck && bun test && bun run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.3",
+    "@types/bun": "latest",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "bun-plugin-tailwind": "latest",
+    "happy-dom": "^21.0.3",
+    "react": "^19",
+    "react-dom": "^19",
+    "tailwindcss": "^4",
+    "typescript": "^5.9"
+  }
+}
